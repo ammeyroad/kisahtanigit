@@ -1,0 +1,67 @@
+<div class="btn-container">
+    <button class="btn show-all">show all</button>
+    <button class="btn car">cars</button>
+    <button class="btn movie">movies</button>
+    <button class="btn color">colors</button>
+  </div>
+
+  <div class="container">
+    <div class="filtered-div" id="color" data-color="color">red</div>
+    <div class="filtered-div" id="car" data-car="car">bmw m4</div>
+    <div class="filtered-div" id="car" data-car="car">audi r8</div>
+    <div class="filtered-div" id="color" data-color="color">blue</div>
+    <div class="filtered-div" id="movie" data-movie="movie">the wolf of Wall street</div>
+    <div class="filtered-div" id="movie" data-movie="movie">the fast and the furious</div>
+    <div class="filtered-div" id="color" data-color="color">red</div>
+    <div class="filtered-div" id="car" data-car="car">bmw m4</div>
+    <div class="filtered-div" id="car" data-car="car">audi r8</div>
+    <div class="filtered-div" id="color" data-color="color">blue</div>
+    <div class="filtered-div" id="movie" data-movie="movie">the wolf of Wall street</div>
+    <div class="filtered-div" id="movie" data-movie="movie">the fast and the furious</div>
+  </div>
+
+css
+
+
+
+.container {
+    margin: auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-rows: repeat(4, 350px);
+    column-gap: 10px;
+    row-gap: 10px;
+    color: #fff;
+  }
+  
+  .filtered-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  text-color: black;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  
+  [data-car] {
+    background-color: coral;
+  }
+  
+  [data-color] {
+    background-color: cornflowerblue;
+  }
+  
+  [data-movie] {
+    background-color: crimson;
+  }
+   
+  .show {
+    display: block;
+  }
+  
+  .remove {
+    display: none;
+  }

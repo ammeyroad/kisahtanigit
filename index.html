@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>kisahtani</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+  <link href="css/shop-homepage.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</head>
+
+<style>
+  div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+
+    bottom: 0;
+  }
+
+
+
+  .show {
+    display: block;
+  }
+
+  .remove {
+    display: none;
+  }
+</style>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+  <!-- Navigation -->
+
+  <nav class="navbar navbar-expand-lg navbar-light shadow bg-light fixed-top border-bottom border-4 border-success">
+    <div class="container justify-content-between">
+      <a class="navbar-brand" href="#">
+        <img src="./kisahtani logo.png" width="60%" alt="">
+      </a>
+      <div>
+        <button class="btn btn-success-cart ml-2 color">beranda</button>
+        <button class="btn btn-success-cart ml-2 car">Kategori</button>
+        <button class="btn btn-success-cart ml-2 movie">Pembayaran</button>
+        <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#exampleModalCenter"><i
+            class="fa fa-user"></i></button>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+
+
+  <!-- Page Content -->
+  <div class="container-fluid col-lg-9">
+    <!-- home -->
+    <div class="filtered-div" id="color" data-color="car">
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+              <div class="carousel-item active">
+                <a href="https://kisahtani.com/category/blog/"> <img class="d-block img-fluid-3" src="./banner3.jpg" width="100%"
+                  alt="First slide"></a> 
+              </div>
+              <div class="carousel-item">
+                <a href="https://kisahtani.com/category/blog/">  <img class="d-block img-fluid-3" src="./banner4.jpg" alt="Second slide"></a> 
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12 mb-2">
+          <div>
+           <a href="https://kisahtani.com/category/blog/"><img class="img-fluid-2" src="./banner1.jpg" alt=""></a> 
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div>
+            <a href="https://kisahtani.com/tentang-kami/"><img class="img-fluid-2" src="./banner2.jpg" alt=""></a> 
+          </div>
+        </div>
+      </div>
+      <div class="row col-lg-12">
+
+        <div class="col-lg-3 bg-white">
+          <br>
+          <li class="list-group-item-dua bg-success d-flex justify-content-between align-items-center rounded-pill">
+            <button class="btn text-light col-3"><i class="fa fa-shopping-cart mr-2"></i> Bayar</button>
+            <button class="btn btn-light btn-block font-weight-bold col-8 rounded-pill" data-toggle="modal"
+              data-target=".bd-example-modal-lg">Rp {{ !totalPrice ? "0" : totalPrice | number:0 }}</button>
+          </li>
+          <ul class="list-group-item-dua mt-2">
+            <li class="list-group-item justify-content-between align-items-center">
+              <div class="border-top mt-2 mb-2" ng-repeat="myItem in myItems | reverse">
+                <div class="d-flex w-100 justify-content-between mt-2">
+                  <small class="mb-1"> {{ myItem.name }}</small>
+                  <small class="text-danger"><i class="fa fa-trash mr-1"></i></small>
+                </div>
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <p><img class="rounded-circle mr-2" src="{{ myItem.id }}" width="50px" height="50px"> {{
+                    myItem.price }} x {{ myItem.count }} </p>
+                  <p class="text-success font-weight-bold">Rp {{myItem.count * myItem.price | number:0 }}</p>
+                </div>
+                
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-9">
+          <br>
+          <div class="row justify-content-between align-items-center ml-2 mr-2 mb-4">
+            <p><a class="btn dropdown-toggle rounded-pill font-weight-bold" data-toggle="collapse"
+                href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Urutkan</a> </p>
+            <div class="input-group col-7 bg-white align-items-center rounded-pill">
+              <i class="fa fa-search ml-3 mr-3"></i> <input type="text"
+                class="form-control form-control-lg border-white rounded-pill" ng-model="test" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <div class="collapse" id="collapseExample">
+              <div class="cardxx card-body bg-white mt-2 mb-2 border-succes border-1">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3" ng-repeat="item in items | filter:test">
+              <div class="card">
+                <img src="{{ item.id }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h6 class="card-title text-success"><span class="font-weight-bold">Rp. {{ item.price }}</span><sub
+                      class="text-secondary">{{ item.atribute }}</sub></h6>
+                  <p class="card-text"><small class="text-muted">{{ item.category }}</small><br>{{ item.name }} {{
+                    item.sku }}</p>
+
+                  <button class="btn btn-success-cart font-weight-bold rounded-pill mt-3" ng-click="addItem(item)"><i
+                      class="fa fa-shopping-cart ml-2 mr-2"></i><span class="mr-3">{{ item.count }} |
+                      Keranjang</span></button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+        <!-- pembayaran -->
+    <div class="filtered-div" id="movie" data-movie="movie">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row jumbotron bg-success justify-content-between">
+              <h3 class="text-light">Pembayaran</h3>
+              <p class="lead">
+                <a class="btn btn-success-cart" data-toggle="modal" data-target="#exampleModal" data-whatever="ID12314122">Konfirmasi Pembayaran</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-8"><br>
+            <form>
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <input type="text" class="form-control" id="penerima" placeholder="Penerima">
+                  <small id="emailHelp" class="form-text text-muted">Nama Penerima</small>
+                </div>
+                <div class="form-group col-sm-6">
+                </div>
+                <div class="form-group col-sm-6">
+                  <input type="number" class="form-control" id="notelp" placeholder="081">
+                  <small id="emailHelp" class="form-text text-muted">No Telfon</small>
+                </div>
+                <div class="form-group col-sm-6">
+                  <input type="email" class="form-control" id="emailpen" placeholder="name@example.com">
+                  <small id="emailHelp" class="form-text text-muted">Email Anda</small>
+                </div>
+                <div class="form-group col-sm-12">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                    placeholder="Alamat Lengkap"></textarea>
+                  <small id="emailHelp" class="form-text text-muted">Alamat lengkap</small>
+                </div>
+                <div class="form-group col-sm-6">
+                  <select class="form-control">
+                    <option>Jakarta Pusat</option>
+                    <option>Jakarta Pusat</option>
+                    <option>Jakarta Pusat</option>
+                  </select>
+                  <small id="emailHelp" class="form-text text-muted">Daerah</small>
+                </div>
+                <div class="form-group col-sm-6">
+                  <input type="number" class="form-control" id="kodepost" placeholder="10446">
+                  <small id="text" class="form-text text-muted">Email Anda</small>
+                </div>
+                <div class="form-group col-sm-6">
+                  <select class="form-control">
+                    <option>Hari Ini</option>
+                    <option>Besok</option>
+                    <option>Lusa</option>
+                    <small id="text" class="form-text text-muted">Tanggal Pengiriman</small>
+                  </select>
+                </div>
+                <div class="form-group col-sm-6">
+                  <select class="form-control">
+                    <option>09 - 12 siang</option>
+                    <option>15 - 17 Sore</option>
+                    <small id="text" class="form-text text-muted">Waktu Pengiriman</small>
+                  </select>
+                </div>
+                <div class="form-group col-sm-12"> <label for="exampleFormControlInput1">Pembayaran</label><BR>
+                  <button class="btn btn-outline-success mr-4">BAYAR DITEMPAT</button> <button
+                    class="btn btn-secondary mr-4 text-light">BCA Virtual Akun </button> <button
+                    class="btn btn-secondary mr-4 text-light">Permata</button>
+                </div><br><br>
+                <div class="form-group col-sm-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Term and condition
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+          <div class="col-sm-4 bg-light">
+            <br>
+
+            <ul class="list-group">
+              <li class="d-flex w-100 text-center">
+                <p class="font-weight-bold">Pesanan Anda</p>
+              </li>
+              <li class="d-flex w-100 justify-content-between" style=" border-color:  #effff0;"
+                ng-repeat="myItem in myItems | reverse">
+                {{ myItem.count }} x {{ myItem.name }} <p>Rp. {{myItem.count * myItem.price | number:0 }}</p>
+              </li>
+              <li class="d-flex w-100 justify-content-between" style=" border-color:  #effff0;">
+                <p class="text-success">Sub Total</p>
+                <p class="text-success">Rp. 25000</p>
+              </li>
+            </ul>
+            <ul class="list-group">
+              <li class="d-flex w-100 justify-content-between" style=" border-color:  #effff0;">
+                <small class="">Ongkos Kirim</small><small>Rp. 25.000</small>
+              </li>
+              <li class="d-flex w-100 justify-content-between" style=" border-color:  #effff0;">
+                <small class="">Biaya Va</small><small>Rp. 5.000</small>
+              </li><br>
+              <li class="d-flex w-100 justify-content-between" style=" border-color:  #effff0;">
+                <p class="font-weight-bold">Total</p>
+                <p class="font-weight-bold">Rp. 25000</p>
+              </li>
+            </ul>
+            <button type="button" class="btn btn-success btn-lg btn-block">Bayar</button>
+            <button type="button" class="btn btn-outline-danger btn-lg btn-block">Kembali</button>
+          </div>
+        </div>
+    </div>
+     <!--kategori -->
+    <div class="filtered-div" id="car" data-car="car">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row jumbotron bg-success">
+            <h3 class="text-light">Kategori Produk</h3>
+          </div>
+        </div>
+
+
+        <div class="col-lg-3 bg-white">
+          <br>
+          <li class="list-group-item-dua bg-success d-flex justify-content-between align-items-center rounded-pill">
+            <button class="btn text-light col-3"><i class="fa fa-shopping-cart mr-2"></i> Bayar</button>
+            <button class="btn btn-light btn-block font-weight-bold col-8 rounded-pill" data-toggle="modal"
+              data-target=".bd-example-modal-lg">Rp {{ !totalPrice ? "0" : totalPrice | number:0 }}</button>
+          </li>
+          <ul class="list-group-item-dua mt-2">
+            <li class="list-group-item justify-content-between align-items-center">
+              <div class="border-top mt-2 mb-2" ng-repeat="myItem in myItems | reverse">
+                <div class="d-flex w-100 justify-content-between mt-2">
+                  <small class="mb-1"> {{ myItem.name }}</small>
+                  <small class="text-danger"><i class="fa fa-trash mr-1"></i></small>
+                </div>
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <p><img class="rounded-circle mr-2" src="{{ myItem.id }}" width="50px" height="50px"> {{
+                    myItem.price }} x {{ myItem.count }} </p>
+                  <p class="text-success font-weight-bold">Rp {{myItem.count * myItem.price | number:0 }}</p>
+                </div>
+                
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-9">
+          <br>
+          <div class="row justify-content-between align-items-center ml-2 mr-2 mb-4">
+            <p><a class="btn dropdown-toggle rounded-pill font-weight-bold" data-toggle="collapse"
+                href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Urutkan</a> </p>
+            <div class="input-group col-7 bg-white align-items-center rounded-pill">
+              <i class="fa fa-search ml-3 mr-3"></i> <input type="text"
+                class="form-control form-control-lg border-white rounded-pill" ng-model="test" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <div class="collapse" id="collapseExample">
+              <div class="cardxx card-body bg-white mt-2 mb-2 border-succes border-1">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3" ng-repeat="item in items | filter:test">
+              <div class="card">
+                <img src="{{ item.id }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h6 class="card-title text-success"><span class="font-weight-bold">Rp. {{ item.price }}</span><sub
+                      class="text-secondary">{{ item.atribute }}</sub></h6>
+                  <p class="card-text"><small class="text-muted">{{ item.category }}</small><br>{{ item.name }} {{
+                    item.sku }}</p>
+
+                  <button class="btn btn-success-cart font-weight-bold rounded-pill mt-3" ng-click="addItem(item)"><i
+                      class="fa fa-shopping-cart ml-2 mr-2"></i><span class="mr-3">{{ item.count }} |
+                      Keranjang</span></button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+
+
+
+
+  <!-- /.modal -->
+  <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+
+  <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-light " id="exampleModalLongTitle">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div><br>
+          <button type="submit" class="btn btn-success-cart">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-light" id="exampleModalLabel">Ungah Bukti Bayar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ID Number</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Upload</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success-cart">Upload</button>
+      </div>
+    </div>
+  </div>
+<div>
+  
+
+
+
+  <!-- Footer -->
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
+  <script src="basketlist.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>\
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="selector.js"></script>
+  <script>$('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var recipient = button.data('whatever')
+    var modal = $(this)
+    modal.find('.modal-title').text('Bukti Bayar untuk ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })</script>
+
+
+
+
+
+</body>
+
+</html>
